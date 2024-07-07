@@ -11,7 +11,7 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace HotelListing.API.Migrations
 {
     [DbContext(typeof(HotelListingDbContext))]
-    [Migration("20240707175606_SeededCountriesHotels")]
+    [Migration("20240707212403_SeededCountriesHotels")]
     partial class SeededCountriesHotels
     {
         /// <inheritdoc />
