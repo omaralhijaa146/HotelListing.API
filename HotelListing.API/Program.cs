@@ -1,4 +1,9 @@
+using System.Text.Json.Serialization;
+using HotelListing.API.Configurations;
+using HotelListing.API.Contracts;
 using HotelListing.API.Data;
+using HotelListing.API.Reposetories;
+using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -10,6 +15,8 @@ string connectionString = builder.Configuration.GetConnectionString("OracleDbCon
 builder.Services.AddDbContext<HotelListingDbContext>(options =>
 {
     options.UseOracle(connectionString);
+    
+    
 });
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -22,6 +29,10 @@ builder.Services.AddCors(options =>
 builder.Host.UseSerilog((ctx, lc) =>
    lc.WriteTo.Console().ReadFrom.Configuration(ctx.Configuration)
 );
+
+builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
+builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
+builder.Services.AddScoped<ICountriesRepository,CountriesRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

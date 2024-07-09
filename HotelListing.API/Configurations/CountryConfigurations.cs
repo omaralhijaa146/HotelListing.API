@@ -8,6 +8,7 @@ public class CountryConfigurations:IEntityTypeConfiguration<Country>
 {
     public void Configure(EntityTypeBuilder<Country> builder)
     {
+        
         builder.HasData(
             new Country
             {
