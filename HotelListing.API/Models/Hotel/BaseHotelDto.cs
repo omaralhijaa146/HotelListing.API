@@ -1,9 +1,15 @@
+using Microsoft.Build.Framework;
+
 namespace HotelListing.API.Models.Country;
 
-public class HotelDto
+public abstract class BaseHotelDto
 {
-    public int Id { get; set; }
+    [Required]
     public string Name { get; set; }
+    [Required]
     public string Address { get; set; }
+    
     public double Rating { get; set; }
+    [Required]
+    public int CountryId { get; set; }
 }
