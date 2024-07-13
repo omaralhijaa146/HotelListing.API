@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HotelListing.API.Data;
 using HotelListing.API.Models.Country;
+using HotelListing.API.Models.Hotel;
+using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace HotelListing.API.Controllers
 {
@@ -88,6 +90,7 @@ namespace HotelListing.API.Controllers
         // POST: api/Hotels
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Hotel>> PostHotel(CreateHotelDto hotelDto)
         {
             var hotel = _mapper.Map<Hotel>(hotelDto);
